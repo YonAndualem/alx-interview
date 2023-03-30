@@ -4,10 +4,11 @@
 
 def can_unlock_all(boxes):
     '''
-    Determines if all the boxes can be opened or not
+    Determines if all the boxes can be opened or not.
+
     Returns:
-        True: all boxes can be opened
-        False: not all boxes can be opened
+        True: if all boxes can be opened.
+        False: if not all boxes can be opened.
     '''
     length = len(boxes)
     keys = set()
