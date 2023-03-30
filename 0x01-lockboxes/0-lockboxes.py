@@ -2,11 +2,13 @@
 '''LockBoxes Challenge'''
 
 
-def canUnlockAll(boxes):
-    '''determines if all the boxes can be opened or not
+def can_unlock_all(boxes):
+    '''
+    Determines if all the boxes can be opened or not.
+
     Returns:
-        True: all boxes can be opened
-        False: not all boxes can be opened
+        True: if all boxes can be opened.
+        False: if not all boxes can be opened.
     '''
     length = len(boxes)
     keys = set()
@@ -14,14 +16,14 @@ def canUnlockAll(boxes):
     i = 0
 
     while i < length:
-        oldi = i
+        old_i = i
         opened_boxes.append(i)
         keys.update(boxes[i])
         for key in keys:
             if key != 0 and key < length and key not in opened_boxes:
                 i = key
                 break
-        if oldi != i:
+        if old_i != i:
             continue
         else:
             break
@@ -30,4 +32,3 @@ def canUnlockAll(boxes):
         if i not in opened_boxes and i != 0:
             return False
     return True
-    
