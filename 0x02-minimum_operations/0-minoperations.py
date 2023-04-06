@@ -4,7 +4,7 @@ Module containing function minoperations
 """
 
 
-def minoperations(n):
+def minOperations(n):
     """
     Returns the fewest number of operations needed to result in exactly
     n H characters in the file.
