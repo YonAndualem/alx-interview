@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-Module containing function minOperations
+Module containing function min_operations
 """
 
 
-def minOperations(n):
+def min_operations(n):
     """
     Returns the fewest number of operations needed to result in exactly
     n H characters in the file.
@@ -17,4 +17,3 @@ def minOperations(n):
             n /= min_ops
         min_ops += 1
     return ops
-    
