@@ -1,50 +1,44 @@
 #!/usr/bin/python3
-''' script that reads stdin line by line and computes metrics '''
+""" script that reads stdin line by line and computes metrics """
+
 import sys
-import logging
-
-logging.basicConfig(level=logging.ERROR)
 
 
-if __name__ == "__main__":
-    count = 0
-    total_size = 0
-    codes = [200, 301, 400, 401, 403, 404, 405, 500]
-    obj = {}
+def printsts(dic, size):
+    """ Prints information """
+    print("File size: {:d}".format(size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
 
-    try:
-        for line in sys.stdin:
-            lst = line.split(' ')
-            if len(lst) < 2:
-                continue
 
-            try:
-                count += 1
-                status = int(lst[-2])
-                size = int(lst[-1])
-                total_size += size
+sts = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+       "404": 0, "405": 0, "500": 0}
 
-                if status in codes:
-                    if status in obj:
-                        obj[status] += 1
-                    else:
-                        obj[status] = 1
+count = 0
+size = 0
 
-                if count == 10:
-                    count = 0
-                    print('File size: {}'.format(total_size))
-                    for el in sorted(obj.items()):
-                        print('{}: {}'.format(el[0], el[1]))
+try:
+    for line in sys.stdin:
+        if count != 0 and count % 10 == 0:
+            printsts(sts, size)
 
-            except ValueError:
-                logging.error('Wrong format: {}'.format(line.strip()))
-                continue
+        stlist = line.split()
+        count += 1
 
-        print('File size: {}'.format(total_size))
-        for el in sorted(obj.items()):
-            print('{}: {}'.format(el[0], el[1]))
+        try:
+            size += int(stlist[-1])
+        except:
+            pass
 
-    except KeyboardInterrupt:
-        print('File size: {}'.format(total_size))
-        for el in sorted(obj.items()):
-            print('{}: {}'.format(el[0], el[1]))
+        try:
+            if stlist[-2] in sts:
+                sts[stlist[-2]] += 1
+        except:
+            pass
+    printsts(sts, size)
+
+
+except KeyboardInterrupt:
+    printsts(sts, size)
+    raise
