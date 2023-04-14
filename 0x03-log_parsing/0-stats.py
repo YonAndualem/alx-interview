@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 ''' script that reads stdin line by line and computes metrics '''
 import sys
+import logging
+
+logging.basicConfig(level=logging.ERROR)
 
 if __name__ == "__main__":
     count = 0
@@ -30,6 +33,7 @@ if __name__ == "__main__":
                         print('{}: {}'.format(el[0], el[1]))
 
             except ValueError:
+                logging.error('Wrong format: {}'.format(line.strip()))
                 continue
 
         print('File size: {}'.format(totalSize))
@@ -40,4 +44,3 @@ if __name__ == "__main__":
         print('File size: {}'.format(totalSize))
         for el in sorted(obj.items()):
             print('{}: {}'.format(el[0], el[1]))
-            
