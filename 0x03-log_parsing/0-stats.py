@@ -48,4 +48,3 @@ if __name__ == "__main__":
         print('File size: {}'.format(total_size))
         for el in sorted(obj.items()):
             print('{}: {}'.format(el[0], el[1]))
-            
