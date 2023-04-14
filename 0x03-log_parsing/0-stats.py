@@ -30,7 +30,7 @@ if __name__ == "__main__":
             try:
                 statusC = int(statusC_and_file_s.split()[0])
                 f_size = int(statusC_and_file_s.split()[1])
-                # print("Status Code {} size {}".format(statusC, f_size))
+                print("Status Code {} size {}".format(statusC, f_size))
                 if statusC in statusC_counter:
                     statusC_counter[statusC] += 1
                 file_size = file_size + f_size
