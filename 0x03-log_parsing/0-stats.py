@@ -3,7 +3,7 @@
 import sys
 import logging
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     count = 0
@@ -28,19 +28,19 @@ if __name__ == "__main__":
 
                 if count == 10:
                     count = 0
-                    print('File size: {}'.format(totalSize))
+                    logging.info('File size: {}'.format(totalSize))
                     for el in sorted(obj.items()):
-                        print('{}: {}'.format(el[0], el[1]))
+                        logging.info('{}: {}'.format(el[0], el[1]))
 
             except ValueError:
                 logging.error('Wrong format: {}'.format(line.strip()))
                 continue
 
-        print('File size: {}'.format(totalSize))
+        logging.info('File size: {}'.format(totalSize))
         for el in sorted(obj.items()):
-            print('{}: {}'.format(el[0], el[1]))
+            logging.info('{}: {}'.format(el[0], el[1]))
 
     except KeyboardInterrupt:
-        print('File size: {}'.format(totalSize))
+        logging.info('File size: {}'.format(totalSize))
         for el in sorted(obj.items()):
-            print('{}: {}'.format(el[0], el[1]))
+            logging.info('{}: {}'.format(el[0], el[1]))
